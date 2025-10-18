@@ -1,6 +1,12 @@
 package com.example.kiemtragiuaky;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +26,30 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        EditText usernamEditText = findViewById(R.id.editTextText);
+        EditText passwordEditText = findViewById(R.id.editTextTextPassword);
+        Button loginButton = findViewById(R.id.button);
+
+        if (loginButton != null) {
+            loginButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String username = usernamEditText != null ? usernamEditText.getText().toString().trim() : "";
+                    String password = passwordEditText != null ? passwordEditText.getText().toString().trim() : "";
+
+                    if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
+                        Toast.makeText(MainActivity.this, "Vui lòng nhập UserNam và PassWord", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    Intent intent = new Intent(MainActivity.this, profile.class);
+                    intent.putExtra("username", username);
+                    startActivities(intent);
+
+                }
+            });
+        }
+
     }
 }
