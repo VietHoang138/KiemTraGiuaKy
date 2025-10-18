@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        EditText usernamEditText = findViewById(R.id.editTextText);
+        EditText usernameEditText = findViewById(R.id.editTextText);
         EditText passwordEditText = findViewById(R.id.editTextTextPassword);
         Button loginButton = findViewById(R.id.button);
 
@@ -35,21 +35,19 @@ public class MainActivity extends AppCompatActivity {
             loginButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String username = usernamEditText != null ? usernamEditText.getText().toString().trim() : "";
+                    String username = usernameEditText != null ? usernameEditText.getText().toString().trim() : "";
                     String password = passwordEditText != null ? passwordEditText.getText().toString().trim() : "";
 
-                    if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
-                        Toast.makeText(MainActivity.this, "Vui lòng nhập UserNam và PassWord", Toast.LENGTH_SHORT).show();
+                    if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
+                        Toast.makeText(MainActivity.this, "Vui lòng nhập Username và Password", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
                     Intent intent = new Intent(MainActivity.this, profile.class);
                     intent.putExtra("username", username);
-                    startActivities(intent);
-
+                    startActivity(intent);
                 }
             });
         }
-
     }
 }
